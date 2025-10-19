@@ -10,9 +10,26 @@ To write a C Program to find area of rectangle using pointer.
 5.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+int main() {
+    float length, width, area;
+    float *ptrLength, *ptrWidth;
+    ptrLength = &length;
+    ptrWidth = &width;
+
+    printf("Enter length of the rectangle: ");
+    scanf("%f", ptrLength);
+    printf("Enter width of the rectangle: ");
+    scanf("%f", ptrWidth);
+    area = (*ptrLength) * (*ptrWidth);
+    printf("Area of the rectangle = %.2f\n", area);
+    return 0;
+}
+```
 ## OUTPUT
-		       	
+![alt text](<output 1.png>)	       	
 
 
 ## RESULT
@@ -34,15 +51,32 @@ To write a C Program to print 'WELCOME' using malloc() and free().
 6.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+int main() {
+    char *str;
+    str = (char *)malloc(8 * sizeof(char));
+    if (str == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+    strcpy(str, "WELCOME");
+    printf("%s\n", str);
+    free(str);
+    return 0;
+}
+
+```
 ## OUTPUT
-
+![alt text](<output 2.png>)
 
 
 ## RESULT
 Thus the program to print 'WELCOME' using malloc() and free() has been executed successfully
  
-.
 
 
 
@@ -60,10 +94,30 @@ To write a C Program to store the student information and display it using struc
 4.	Stop the program.
 
 ## PROGRAM
+```
+#include <stdio.h>
 
+struct Student {
+    char name[50];
+    int roll;
+    float marks;
+};
 
+int main() {
+    struct Student s;
+    fgets(s.name, sizeof(s.name), stdin);
+    scanf("%d", &s.roll);
+    scanf("%f", &s.marks);
+
+    printf("Name        : %s", s.name);
+    printf("Roll Number : %d\n", s.roll);
+    printf("Marks       : %.2f\n", s.marks);
+
+    return 0;
+}
+```
 ## OUTPUT
-
+![alt text](<output 3.png>)
 
 ## RESULT
 
@@ -76,22 +130,54 @@ Thus the program to store the student information and display it using structure
 
 ## AIM
 
-To write a C Program to read and store the data of 3 employees and calculate their Gross Salary using the concept of structure.
+To write a C Program to read customer no,prev reading & current reading as input for eb calculation bill for 3 customers(first 100 unit 2 rs per unit,101 to 200 rs.3 per unit and above 200 rs 5 per unit).
 
 ## ALGORITHM
 
-1.	Start the program.
-2.	Create an employee structure with name, id and salary details as members.
-3.	Using structure variable read the structure members.
-4.	Calculate the gross salary and print the details.
-5.	Stop the program.
+1. Start the program.
+2. Create an employee structure with name, id, basic salary, hra, da, and gross salary as members.
+3. Declare a structure variable to store employee details.
+4. Read the employee name, id, basic salary, hra, and da from the user.
+5. Calculate gross salary using the formula: gross salary = basic salary + hra + da.
+6. Display the employee name, id, basic salary, hra, da, and gross salary.
+7. Stop the program.
 
 ## PROGRAM
-
-
+```
+#include<stdio.h>
+struct Customer {
+    int cust_no;
+    int prev_reading;
+    int curr_reading;
+    float bill;};
+float calculate_bill(int units){
+    float amount = 0.0;
+    if(units<=100){
+        amount = units*2;}
+    else if(units<=200){
+        amount=100*2+(units-100)*3;}
+    else{
+        amount=100*2+100*3+(units-200)*5;}
+    return amount;}
+int main()
+{struct Customer customers[3];
+    int i;
+    for(i=0;i<3;i++){
+        scanf("%d",&customers[i].cust_no);
+        scanf("%d",&customers[i].prev_reading);
+        scanf("%d",&customers[i].curr_reading);
+        int units = customers[i].curr_reading-customers[i].prev_reading;
+        customers[i].bill=calculate_bill(units); }
+        printf("Details of the EB Customer\n");
+        for(i=0;i<3;i++){
+            printf("%d      %.2f\n",customers[i].cust_no,customers[i].bill);
+        }
+    return 0;
+}
+```
  ## OUTPUT
 
- 
+ ![alt text](<output 4.png>)
 
 ## RESULT
 
@@ -134,11 +220,37 @@ Step 7: Output Loop (i = 0 to 1):
 Step 8: End the program.
 
 ## PROGRAM
-
-
+```
+#include <stdio.h>
+struct Student {
+    char name[50];
+    int roll;
+    float marks[5];     
+    float total;
+    float average;
+};
+int main() {
+    struct Student s;
+    int i;
+    scanf(" %[^\n]", s.name);
+    scanf("%d", &s.roll);
+    s.total = 0;
+    for(i = 0; i < 5; i++) {
+        printf("Subject %d: ", i + 1);
+        scanf("%f", &s.marks[i]);
+        s.total += s.marks[i];
+    }
+    s.average = s.total / 5;
+    printf("Name     : %s\n", s.name);
+    printf("Roll No  : %d\n", s.roll);
+    printf("Total    : %.2f\n", s.total);
+    printf("Average  : %.2f\n", s.average);
+    return 0;
+}
+```
 ## OUTPUT
 
- 
+ ![alt text](<output 5.png>)
 
 ## RESULT
 
